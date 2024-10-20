@@ -3,23 +3,28 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Report Card Generator</title>
     <link rel="stylesheet" href="style.css">
-    <title>Student Report Card</title>
 </head>
 <body>
     <div class="container">
-        <h1>Student Report Card</h1>
-        <div id="report-card" class="report-card"></div>
+        <h1>Student Report Card Generator</h1>
+        <form id="reportCardForm">
+            <input type="text" id="studentName" placeholder="Student Name" required>
+            <input type="text" id="studentClass" placeholder="Class" required>
+            <input type="text" id="subject1" placeholder="Subject 1" required>
+            <input type="number" id="marks1" placeholder="Marks 1" min="0" max="100" required>
+            <input type="text" id="subject2" placeholder="Subject 2" required>
+            <input type="number" id="marks2" placeholder="Marks 2" min="0" max="100" required>
+            <input type="text" id="subject3" placeholder="Subject 3" required>
+            <input type="number" id="marks3" placeholder="Marks 3" min="0" max="100" required>
+            <button type="submit">Generate Report Card</button>
+        </form>
+        <div id="reportCard" class="report-card hidden">
+            <h2>Report Card</h2>
+            <div id="cardContent"></div>
+        </div>
     </div>
-
     <script src="app.js"></script>
 </body>
 </html>
-
-
-
-
-
-
-
-
