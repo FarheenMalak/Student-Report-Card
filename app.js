@@ -26,11 +26,13 @@ document.getElementById('reportCardForm').addEventListener('submit', function(ev
         else return 'F';
     });
     const cardContent = `
-        <p><strong>Name:</strong> ${name}</p>
-        <p><strong>Class:</strong> ${studentClass}</p>
+        <div class="card-header">
+            <p><strong>Name:</strong> ${name}</p>
+            <p><strong>Class:</strong> ${studentClass}</p>
+        </div>
         <h3>Subjects and Marks</h3>
-        <ul>
-            ${subjects.map((subject, index) => `<li>${subject.name}: ${subject.marks} (Grade: ${grades[index]})</li>`).join('')}
+        <ul class="subject-list">
+            ${subjects.map((subject, index) => `<li><span class="subject-name">${subject.name}:</span> <span>${subject.marks} (Grade: ${grades[index]})</span></li>`).join('')}
         </ul>
         <p><strong>Total Marks:</strong> ${totalMarks}</p>
         <p><strong>Average Marks:</strong> ${averageMarks.toFixed(2)}</p>
