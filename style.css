@@ -1,0 +1,40 @@
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #f0f4f8; /* Light background */
+    font-family: 'Arial', sans-serif;
+}
+
+.container {
+    text-align: center;
+    background: #ecf0f1; /* Light background */
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+    color: #27ae60; /* Green color for the heading */
+    margin-bottom: 20px;
+}
+
+.report-card {
+    margin-top: 20px;
+    text-align: left;
+}
+
+.subject {
+    margin: 10px 0;
+}
+
+strong {
+    color: #2980b9; /* Blue color for emphasis */
+}
+
+
+
+
+
+
