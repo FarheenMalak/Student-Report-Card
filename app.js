@@ -1,63 +1,33 @@
-const student = {
-    name: "Raza Ali",
-    rollNumber: "12345",
-    subjects: {
-        math: { marks: 85, total: 100 },
-        english: { marks: 90, total: 100 },
-        science: { marks: 75, total: 100 },
-        history: { marks: 80, total: 100 }
-    },
-    getTotalMarks() {
-        let totalMarksObtained = 0;
-        let totalMarks = 0;
-
-        for (const subject in this.subjects) {
-            totalMarksObtained += this.subjects[subject].marks;
-            totalMarks += this.subjects[subject].total;
+document.getElementById('reportCardForm').addEventListener('submit', function(event) {
+    event.preventDefault();
+    const name = document.getElementById('studentName').value;
+    const studentClass = document.getElementById('studentClass').value;
+    const subjects = [
+        {
+            name: document.getElementById('subject1').value,
+            marks: parseInt(document.getElementById('marks1').value)
+        },
+        {
+            name: document.getElementById('subject2').value,
+            marks: parseInt(document.getElementById('marks2').value)
+        },
+        {
+            name: document.getElementById('subject3').value,
+            marks: parseInt(document.getElementById('marks3').value)
         }
-
-        return { totalMarksObtained, totalMarks };
-    },
-    getPercentage() {
-        const { totalMarksObtained, totalMarks } = this.getTotalMarks();
-        return (totalMarksObtained / totalMarks) * 100;
-    },
-    getGrade() {
-        const percentage = this.getPercentage();
-        if (percentage >= 90) {
-            return "A";
-        } else if (percentage >= 75) {
-            return "B";
-        } else if (percentage >= 50) {
-            return "C";
-        } else {
-            return "D";
-        }
-    }
-};
-
-const reportCard = document.getElementById("report-card");
-reportCard.innerHTML = `<h2>${student.name} (Roll No: ${student.rollNumber})</h2>`;
-reportCard.innerHTML += `<h3>Subjects</h3>`;
-
-for (const subject in student.subjects) {
-    const { marks, total } = student.subjects[subject];
-    reportCard.innerHTML += `
-        <div class="subject">
-            <strong>${subject.charAt(0).toUpperCase() + subject.slice(1)}:</strong> ${marks}/${total}
-        </div>`;
-}
-
-const { totalMarksObtained, totalMarks } = student.getTotalMarks();
-const percentage = student.getPercentage();
-const grade = student.getGrade();
-
-reportCard.innerHTML += `<h3>Total Marks: ${totalMarksObtained}/${totalMarks}</h3>`;
-reportCard.innerHTML += `<h3>Percentage: ${percentage.toFixed(2)}%</h3>`;
-reportCard.innerHTML += `<h3>Grade: ${grade}</h3>`;
-
-
-
-
-
-
+    ];
+    const totalMarks = subjects.reduce((sum, subject) => sum + subject.marks, 0);
+    const averageMarks = totalMarks / subjects.length;
+    const cardContent = `
+        <p><strong>Name:</strong> ${name}</p>
+        <p><strong>Class:</strong> ${studentClass}</p>
+        <h3>Subjects and Marks</h3>
+        <ul>
+            ${subjects.map(subject => `<li>${subject.name}: ${subject.marks}</li>`).join('')}
+        </ul>
+        <p><strong>Total Marks:</strong> ${totalMarks}</p>
+        <p><strong>Average Marks:</strong> ${averageMarks.toFixed(2)}</p>
+    `;
+    document.getElementById('cardContent').innerHTML = cardContent;
+    document.getElementById('reportCard').classList.remove('hidden');
+});
