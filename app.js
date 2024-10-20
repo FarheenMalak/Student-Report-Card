@@ -18,12 +18,19 @@ document.getElementById('reportCardForm').addEventListener('submit', function(ev
     ];
     const totalMarks = subjects.reduce((sum, subject) => sum + subject.marks, 0);
     const averageMarks = totalMarks / subjects.length;
+    const grades = subjects.map(subject => {
+        if (subject.marks >= 90) return 'A';
+        else if (subject.marks >= 80) return 'B';
+        else if (subject.marks >= 70) return 'C';
+        else if (subject.marks >= 60) return 'D';
+        else return 'F';
+    });
     const cardContent = `
         <p><strong>Name:</strong> ${name}</p>
         <p><strong>Class:</strong> ${studentClass}</p>
         <h3>Subjects and Marks</h3>
         <ul>
-            ${subjects.map(subject => `<li>${subject.name}: ${subject.marks}</li>`).join('')}
+            ${subjects.map((subject, index) => `<li>${subject.name}: ${subject.marks} (Grade: ${grades[index]})</li>`).join('')}
         </ul>
         <p><strong>Total Marks:</strong> ${totalMarks}</p>
         <p><strong>Average Marks:</strong> ${averageMarks.toFixed(2)}</p>
